@@ -30,7 +30,7 @@ engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('Disaster', engine)
 
 # load model
-model = joblib.load("../models/classifier.pkl")
+model = joblib.load("../models/classifier1.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -67,7 +67,24 @@ def index():
                     'title': "Genre"
                 }
              }
-        }       
+        },
+        {
+            'data': [
+                Bar(
+                    x=target_names,
+                    y=target_distribution
+                )
+            ],
+            'layout': {
+                'title': 'Needs in %',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Needs"
+                }
+            }
+        }
     ]
     
     # encode plotly graphs in JSON
