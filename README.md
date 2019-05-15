@@ -13,3 +13,4 @@
 
 3. Go to http://0.0.0.0:3001/
 # Disaster_pipeline
+classifier.pkl is added shortly
