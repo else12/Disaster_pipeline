@@ -12,5 +12,10 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
-# Disaster_pipeline
-c
+
+#### Important Files: 
+1.  data/pre_process_data.py :  performs ETL pipeline and  tokenizes and cleans to text for modelling
+2.  models/train_classifier.py :The ML pipeline that  models and trains the classifier and saves the model in a pickle file
+named classifier.pkl
+3. app/templates/*.html: HTML templates for the web app.
+4. run.py: Starts the Python server for the web app and prepare visualizations.
