@@ -30,6 +30,14 @@ nltk.download('punkt')
 nltk.download('wordnet')
 
 def load_data(database_filepath):
+    '''
+    load the data from the database in database-filepath
+    
+    Outputs: 
+        X: features , dataframe
+        Y: target dataframe
+        category_nmes: target names
+    '''
     engine = create_engine('sqlite:///'+ database_filepath)
     df =  pd.read_sql_table(database_filepath, engine)
     X = df['message'].values
@@ -38,6 +46,13 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 def tokenize(text):
+    '''
+    tokenize and clean the text 
+    Input: 
+        text: text to be tokenized and cleaned
+    output: 
+        clean_tokens: cleaned  and tokenized text
+    '''
     text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
     tokens = word_tokenize(text)  
     tokens  = [w for w in tokens if   w not in stopwords.words("english")]
@@ -52,12 +67,14 @@ def tokenize(text):
     return clean_tokens
 
 def build_model():
+    ''' building the model 
+    '''
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
         ('clf',  MultiOutputClassifier(RandomForestClassifier(random_state=100)))
          ])
-    
+    # hyperparameters
     parameters = {'clf__estimator__n_estimators': [50, 100] ,
                   'clf__estimator__min_samples_split': [2, 4]
                  }
@@ -65,6 +82,12 @@ def build_model():
     return cv
 
 def calc_scores(y_test, y_pred, category_names):
+    '''
+    Inputs:
+        y_test: testing labels
+        y_pred: predicted labels
+        category_names: names of the labels
+    '''
     res =[]
     precision =0
     recall=0
@@ -86,12 +109,23 @@ def calc_scores(y_test, y_pred, category_names):
     print('total Accuracy: %2.2f'% (tot_accuracy*100))
     
 def evaluate_model(model, X_test, y_test, category_names):
-    
+   '''  
+    inputs: 
+        model: trained model
+        X_test: testing data
+        y_test: data labels
+        category_names: names of the labels
+    '''
     y_pred = model.predict(X_test)
     calc_scores(y_test, y_pred, category_names)
     
 
 def save_model(model, model_filepath):
+    '''
+    save the trained moel in python pickle file
+    model: trained model
+    model_filepath: where the model is located
+    '''
     pickle.dump(model, open(model_filepath, "wb" ) )
 
 
