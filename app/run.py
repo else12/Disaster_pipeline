@@ -26,12 +26,14 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/DisasterResponse.db')
+
+database_filepath = '/home/workspace/data/DisasterResponse.db'
+engine = create_engine('sqlite:///{}'.format(database_filepath))
 df = pd.read_sql_table('Disaster', engine)
 
 # load model
-model = joblib.load("../models/classifier1.pkl")
-
+#model = joblib.load("../models/classifier1.pkl")
+model = joblib.load("/home/workspace/models/classifier.pkl")
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
@@ -42,8 +44,7 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
-    category_names = df.iloc[:,4:].columns
-    category_boolean = (df.iloc[:,4:] != 0).sum().values
+    
     # distribution
     target_distribution = df.drop(['id','message','original','genre'],axis=1).mean()
     target_names = list(target_distribution.index)
@@ -100,7 +101,7 @@ def index():
 def go():
     # save user input in query
     query = request.args.get('query', '') 
-
+   
     # use model to predict classification for query
     classification_labels = model.predict([query])[0]
     classification_results = dict(zip(df.columns[4:], classification_labels))
