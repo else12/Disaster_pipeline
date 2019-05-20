@@ -5,27 +5,24 @@ from sqlalchemy import create_engine
 import sqlite3
 
 def load_data(messages_filepath, categories_filepath):
-	''' 
-	loading data
-	Inputs: 
-		messages_filepath: messgae file
-		categories_filepath: category datafile
-	Output: 
-		df: loaded Dataframe
-	'''
+    ''' loads the data
+    Inputs:
+        messages_filepath: message.cvs file path
+        categories_filepath: category.csv file path
+    Output: 
+        df: Dataframe
+   '''
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     df  = messages.merge(categories, on=('id'))
     return df
 
 def clean_data(df):
-	''' 
-	CLeaning the data
-	Input:
-		df: dataframe to be cleaned, and preprocessed
-	Output: 
-		df: cleaned and preprocessed dataframe
-	'''
+    '''
+    cleans the data
+    Input: 
+        df: Dataframe
+    '''
     categories = df["categories"].str.split(';', expand=True)
     row = categories.iloc[0]
     category_colnames = []
@@ -39,17 +36,18 @@ def clean_data(df):
         categories[column] = categories[column].astype(int)
     df.drop(columns=['categories'], inplace = True)
     df = pd.concat((df, categories), axis=1)
+    # drops the duplicates
     duplicates= df.duplicated( keep='first')
     df.drop_duplicates(inplace=True)
     return df
 
 def save_data(df, database_filename):
-	'''
-	Saving the database file
-	Input: 
-		df: Data to be saved to sql file
-	database_filename: filename of the saved data
-	''' 
+   '''
+   Saves the dataframe  in sql database
+   Input:
+        df: dataframe
+        database_filenae: filename for the database
+   '''
    engine = create_engine('sqlite:///'+ database_filename)
    df.to_sql('Disaster', engine, index = False, if_exists='replace')
 
