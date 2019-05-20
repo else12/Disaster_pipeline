@@ -5,27 +5,27 @@ from sqlalchemy import create_engine
 import sqlite3
 
 def load_data(messages_filepath, categories_filepath):
-''' 
+	''' 
 	loading data
 	Inputs: 
 		messages_filepath: messgae file
 		categories_filepath: category datafile
 	Output: 
 		df: loaded Dataframe
-'''
+	'''
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     df  = messages.merge(categories, on=('id'))
     return df
 
 def clean_data(df):
-''' 
+	''' 
 	CLeaning the data
 	Input:
 		df: dataframe to be cleaned, and preprocessed
 	Output: 
 		df: cleaned and preprocessed dataframe
-'''
+	'''
     categories = df["categories"].str.split(';', expand=True)
     row = categories.iloc[0]
     category_colnames = []
@@ -44,12 +44,12 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
-'''
+	'''
 	Saving the database file
 	Input: 
 		df: Data to be saved to sql file
 	database_filename: filename of the saved data
-''' 
+	''' 
    engine = create_engine('sqlite:///'+ database_filename)
    df.to_sql('Disaster', engine, index = False, if_exists='replace')
 
