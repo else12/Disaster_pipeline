@@ -19,3 +19,20 @@
 named classifier.pkl
 3. app/templates/*.html: HTML templates for the web app.
 4. run.py: Starts the Python server for the web app and prepare visualizations.
+5.  Need to be loaded:
+		nltk.download('stopwords')
+		nltk.download('punkt')
+		nltk.download('wordnet')
+		
+4.  ETL pipeline, preprocess_data.py:  
+	- load the datafiles
+	- merges these two datafiles 
+	- cleans the merged data
+	- saves the cleaned data to sql databse
+5. ML Pipeline, train_classifier.py:
+	- loads the sql database
+	- splits the data for training
+	- builds a text processing and ML pipeline
+	- trains and tunes the  model using GridSearch
+	- Exports the trained model as pickle file
+	
