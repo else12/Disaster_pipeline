@@ -44,7 +44,7 @@ named classifier.pkl
 ### Results:
 Average Weighted Prediction Scores:
 
-	- Precision: 94.093398
-	- Recall: 94.950843  
-	- F1-Score: 93.827845
+	- Precision: 94.09
+	- Recall: 94.95  
+	- F1-Score: 93.83
 	- total Accuracy: 94.95
