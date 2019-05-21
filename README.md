@@ -6,13 +6,6 @@ and data visualization.
 Disaster message data given by FigureEight contains 36 categories which are classified.
 A Flask app shows a visualization on classification result.
 
-#### Results:
-Average Weighted Prediction Scores:
-
-	- Precision: 94.093398
-	- Recall: 94.950843  
-	- F1-Score: 93.827845
-	- total Accuracy: 94.95
 
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
@@ -48,3 +41,10 @@ named classifier.pkl
 	- trains and tunes the  model using GridSearch
 	- Exports the trained model as pickle file
 	
+#### Results:
+Average Weighted Prediction Scores:
+
+	- Precision: 94.093398
+	- Recall: 94.950843  
+	- F1-Score: 93.827845
+	- total Accuracy: 94.95
