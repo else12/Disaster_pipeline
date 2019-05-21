@@ -41,7 +41,7 @@ named classifier.pkl
 	- trains and tunes the  model using GridSearch
 	- Exports the trained model as pickle file
 	
-#### Results:
+### Results:
 Average Weighted Prediction Scores:
 
 	- Precision: 94.093398
