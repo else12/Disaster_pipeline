@@ -1,5 +1,19 @@
 # Disaster Response Pipeline Project
 
+The project utilizes Data Engineering skills including ETL and ML Pipeline preparation, building a model for a web app, 
+and data visualization.
+
+Disaster message data given by FigureEight contains 36 categories which are classified.
+A Flask app shows a visualization on classification result.
+
+#### Results:
+Average Weighted Prediction Scores:
+
+	- Precision: 94.093398
+	- Recall: 94.950843  
+	- F1-Score: 93.827845
+	- total Accuracy: 94.95
+
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
@@ -12,19 +26,6 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
-
-#### Motivation:
-
-The project to utilize Data Engineering skills including ETL and ML Pipeline preparation, building a model for a web app, and data visualization.
-
-Disaster data given by FigureEight contains 36 categories which are classified.
-A Flask app shows a visualization on classification result and classifiers user defined message put on the web.
-
-#### Results:
-Average Weighted Prediction Scores:
-
-Precision: 94.093398 Recall: 94.950843  F1-Score: 93.827845
-total Accuracy: 94.95
 
 
 #### Important Files: 
