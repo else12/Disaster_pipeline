@@ -32,7 +32,7 @@ engine = create_engine('sqlite:///{}'.format(database_filepath))
 df = pd.read_sql_table('Disaster', engine)
 
 # load model
-#model = joblib.load("../models/classifier1.pkl")
+
 model = joblib.load("/home/workspace/models/classifier.pkl")
 
 # index webpage displays cool visuals and receives user input text for model
