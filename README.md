@@ -37,8 +37,9 @@ named classifier.pkl
 5. ML Pipeline, train_classifier.py:
 	- loads the sql database
 	- splits the data for training
-	- builds a text processing and ML pipeline
-	- trains and tunes the  model using GridSearch
+	- builds a text processing and ML pipeline 
+	- builds a multi-output RandomForest classifier
+	- trains and tunes the model using GridSearch
 	- Exports the trained model as pickle file
 	
 ### Results:
